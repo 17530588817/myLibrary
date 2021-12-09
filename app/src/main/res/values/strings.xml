@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">天道图书馆</string>
+    <string name="defaultFrag">主页</string>
+    <string name="me">我的</string>
+    <string name="operationFrag">借还</string>
+    <string name="user_name_tv">姓名：</string>
+    <string name="user_code_tv">当前积分：</string>
+    <string name="operation_lend">借书</string>
+    <string name="operation_back">还书</string>
+</resources>
