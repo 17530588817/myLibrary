@@ -6,9 +6,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.heng.myLibrary.R;
@@ -30,7 +33,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private static final String TAG = "MainActivity";
     RadioGroup mainRg;
     DBDefinitionManipulation db;
-    Intent bgmServiceIntent,broadcastReceiverIntent;
+    Intent bgmServiceIntent, broadcastReceiverIntent;
+    ImageView bgmIv;
+    boolean bgmFlag = true;
 
 
     //todo: 声明两个按钮对应的Fragment对象
@@ -50,14 +55,34 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
         // todo: 广播(bgm开启)
         broadcastReceiverIntent = new Intent();
+
         // 定义广播的事件类型
         broadcastReceiverIntent.setAction("Broadcast_Action_BGM");
+        broadcastReceiverIntent.setComponent(new ComponentName(getPackageName(),
+                getPackageName() + "MyBroadcastReceiver"));
+        Log.e(TAG, "onCreate: broadcastReceiverIntent start ");
         // 发送广播
         sendBroadcast(broadcastReceiverIntent);
 
-
-
         mainRg = findViewById(R.id.main_rg);
+        bgmIv = findViewById(R.id.mainActivity_image_bgm);
+        bgmIv.setImageResource(R.drawable.mainactivity_bgm_yes);
+        bgmIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (bgmFlag) {
+                    bgmIv.setImageResource(R.drawable.mainactivity_bgm_no);
+                    bgmServiceIntent.putExtra("action", "pause");
+                    startService(bgmServiceIntent);
+                    bgmFlag = false;
+                } else {
+                    bgmIv.setImageResource(R.drawable.mainactivity_bgm_yes);
+                    bgmServiceIntent.putExtra("action", "play");
+                    startService(bgmServiceIntent);
+                    bgmFlag = true;
+                }
+            }
+        });
 
         db = new DBDefinitionManipulation(this);
 

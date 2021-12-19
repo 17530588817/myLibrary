@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //todo: 验证用户身份
     private Integer checkUser() {
         Integer checkUserFlag = db.checkUser(accountTv.getText().toString(), passwordTv.getText().toString(), userIdentity());
-        Log.e(TAG, "checkUser: + level = " + checkUserFlag);
+//        Log.e(TAG, "checkUser: + level = " + checkUserFlag);
         return checkUserFlag;
     }
 
