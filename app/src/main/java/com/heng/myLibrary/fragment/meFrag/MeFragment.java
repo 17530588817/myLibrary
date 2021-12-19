@@ -1,4 +1,4 @@
-package com.heng.myLibrary.meFrag;
+package com.heng.myLibrary.fragment.meFrag;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,7 +13,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -28,14 +27,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.activity.LoginActivity;
-import com.heng.myLibrary.activity.MainActivity;
 import com.heng.myLibrary.activity.NewsActivity;
 import com.heng.myLibrary.database.bean.MeItemBean;
 import com.heng.myLibrary.database.entity.User;

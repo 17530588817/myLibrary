@@ -40,6 +40,16 @@
             android:exported="true" />
 
         <service android:name=".service.BGMService"/>
+
+
+        <receiver
+            android:name=".broadcastReceiver.MyBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="Help_Stitch"/>
+            </intent-filter>
+
+        </receiver>
     </application>
 
 </manifest>

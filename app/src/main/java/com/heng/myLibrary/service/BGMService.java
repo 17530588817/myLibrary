@@ -12,6 +12,8 @@ import com.heng.myLibrary.R;
 /**
  * @author : HengZhang
  * @date : 2021/12/19 16:28
+ *
+ * BGM服务
  */
 
 public class BGMService extends Service {

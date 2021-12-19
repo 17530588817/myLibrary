@@ -14,9 +14,9 @@ import android.widget.RadioGroup;
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 import com.heng.myLibrary.database.entity.User;
-import com.heng.myLibrary.defaultFrag.DefaultFragment;
-import com.heng.myLibrary.meFrag.MeFragment;
-import com.heng.myLibrary.operationFrag.OperationFragment;
+import com.heng.myLibrary.fragment.defaultFrag.DefaultFragment;
+import com.heng.myLibrary.fragment.meFrag.MeFragment;
+import com.heng.myLibrary.fragment.operationFrag.OperationFragment;
 import com.heng.myLibrary.service.BGMService;
 
 /**
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private static final String TAG = "MainActivity";
     RadioGroup mainRg;
     DBDefinitionManipulation db;
-    Intent intent;
+    Intent bgmServiceIntent,broadcastReceiverIntent;
 
 
     //todo: 声明两个按钮对应的Fragment对象
@@ -43,17 +43,25 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         setContentView(R.layout.activity_main);
 
         // todo:开启BGM
-        intent = new Intent(this, BGMService.class);
-        intent.putExtra("action", "play");
-
+        bgmServiceIntent = new Intent(this, BGMService.class);
+        bgmServiceIntent.putExtra("action", "play");
         Log.e(TAG, "onCreate: BGMService start " + BGMService.class);
-        startService(intent);
+        startService(bgmServiceIntent);
+
+        // todo: 广播(bgm开启)
+        broadcastReceiverIntent = new Intent();
+        // 定义广播的事件类型
+        broadcastReceiverIntent.setAction("Broadcast_Action_BGM");
+        // 发送广播
+        sendBroadcast(broadcastReceiverIntent);
+
+
 
         mainRg = findViewById(R.id.main_rg);
 
         db = new DBDefinitionManipulation(this);
 
-        //todo: 获取前intent数据
+        //todo: 获取数据
         User user = (User) getIntent().getSerializableExtra("user");
         Log.e(TAG, "onCreate: " + user);
         //todo: 加载数据到内存里
@@ -124,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     @Override
     protected void onDestroy() {
         Log.e(TAG, "onCreate: BGMService stop " + BGMService.class);
-        stopService(intent);
+        stopService(bgmServiceIntent);
         super.onDestroy();
     }
 }

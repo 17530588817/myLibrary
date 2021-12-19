@@ -10,10 +10,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.heng.myLibrary.R;
-import com.heng.myLibrary.adminFrag.AdminAdapter;
-import com.heng.myLibrary.adminFrag.BookFragment;
-import com.heng.myLibrary.adminFrag.SelectFragment;
-import com.heng.myLibrary.adminFrag.UserFragment;
+import com.heng.myLibrary.fragment.adminFrag.AdminAdapter;
+import com.heng.myLibrary.fragment.adminFrag.BookFragment;
+import com.heng.myLibrary.fragment.adminFrag.SelectFragment;
+import com.heng.myLibrary.fragment.adminFrag.UserFragment;
 
 import java.util.ArrayList;
 import java.util.List;

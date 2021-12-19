@@ -1,4 +1,4 @@
-package com.heng.myLibrary.operationFrag;
+package com.heng.myLibrary.fragment.operationFrag;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.heng.myLibrary.R;
-import com.heng.myLibrary.adminFrag.selectAdapter.SelectBookAdapter;
+import com.heng.myLibrary.fragment.adminFrag.selectAdapter.SelectBookAdapter;
 import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 import com.heng.myLibrary.database.bean.SelectBookItem;
 import com.heng.myLibrary.database.entity.Book;

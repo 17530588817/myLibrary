@@ -1,4 +1,4 @@
-package com.heng.myLibrary.adminFrag;
+package com.heng.myLibrary.fragment.adminFrag;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

@@ -1,4 +1,4 @@
-package com.heng.myLibrary.adminFrag;
+package com.heng.myLibrary.fragment.adminFrag;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.heng.myLibrary.R;
-import com.heng.myLibrary.adminFrag.selectAdapter.SelectBookAdapter;
-import com.heng.myLibrary.adminFrag.selectAdapter.SelectUserAdapter;
+import com.heng.myLibrary.fragment.adminFrag.selectAdapter.SelectBookAdapter;
+import com.heng.myLibrary.fragment.adminFrag.selectAdapter.SelectUserAdapter;
 import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 import com.heng.myLibrary.database.bean.SelectBookItem;
 import com.heng.myLibrary.database.bean.SelectUserItem;

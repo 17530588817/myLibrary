@@ -1,4 +1,4 @@
-package com.heng.myLibrary.adminFrag;
+package com.heng.myLibrary.fragment.adminFrag;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
