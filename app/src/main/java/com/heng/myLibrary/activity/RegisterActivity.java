@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.register_yes:
                 if (checkRegister()) {
                     Toast.makeText(this, "注册成功！", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "register 注册 用户 成功");
+                    Log.w(TAG, "register 注册 用户 成功");
                     finish();
                 } else {
                     Toast.makeText(this, "注册失败！", Toast.LENGTH_SHORT).show();

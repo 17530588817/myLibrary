@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.heng.myLibrary">
-
-    <!--    申请权限-->
+    <!-- 申请权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -19,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Library">
         <activity
+            android:name=".activity.NewsActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -27,17 +29,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.MainActivity"
             android:exported="true" />
-
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="true" />
-
         <activity
             android:name=".activity.AdminActivity"
             android:exported="true" />
+
+        <service android:name=".service.BGMService"/>
     </application>
+
 </manifest>

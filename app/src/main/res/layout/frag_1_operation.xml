@@ -57,31 +57,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@drawable/operation_books_bg"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/operation_showallbook"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/operation_books_bg"
-            android:text="所有书" />
-
-        <ListView
-            android:id="@+id/operation_allbook"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
@@ -118,7 +93,32 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/operation_vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/operation_books_bg"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/operation_showallbook"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/operation_books_bg"
+            android:text="所有书" />
+
+        <ListView
+            android:id="@+id/operation_allbook"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
 
 </LinearLayout>

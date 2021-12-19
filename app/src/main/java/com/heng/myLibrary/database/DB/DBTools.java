@@ -77,7 +77,7 @@ public class DBTools {
     public Integer checkUserPwd(Cursor cursor, String userPassword, String userLevel,
                                 String password, Integer level) {
         if (!checkCursor(cursor)) {
-            return null;
+            return 0;
         }
 
         Log.d(TAG, "checkUserPwd: level = " + cursor.getInt(cursor.getColumnIndex(userLevel)));

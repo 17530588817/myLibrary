@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">天道图书馆</string>
+    <string name="app_name">恒宝图书馆</string>
     <string name="defaultFrag">主页</string>
     <string name="me">我的</string>
     <string name="operationFrag">借还</string>

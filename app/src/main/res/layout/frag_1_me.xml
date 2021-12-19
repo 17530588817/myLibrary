@@ -80,7 +80,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="6"
         android:background="@color/bg_yellow">
 
         <ListView
@@ -95,6 +95,16 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/news"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/operation_2_bg"
+        android:text="新闻" />
+
+    <Button
         android:id="@+id/exit_login"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -105,6 +115,5 @@
         android:background="@drawable/operation_2_bg"
         android:text="退出登陆"
         android:textSize="20sp" />
-
 
 </LinearLayout>

@@ -17,6 +17,7 @@ import com.heng.myLibrary.database.entity.User;
 import com.heng.myLibrary.defaultFrag.DefaultFragment;
 import com.heng.myLibrary.meFrag.MeFragment;
 import com.heng.myLibrary.operationFrag.OperationFragment;
+import com.heng.myLibrary.service.BGMService;
 
 /**
  * @author : HengZhang
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private static final String TAG = "MainActivity";
     RadioGroup mainRg;
     DBDefinitionManipulation db;
+    Intent intent;
+
 
     //todo: 声明两个按钮对应的Fragment对象
     Fragment defaultFrag, meFrag, operationFrag;
@@ -39,13 +42,20 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // todo:开启BGM
+        intent = new Intent(this, BGMService.class);
+        intent.putExtra("action", "play");
+
+        Log.e(TAG, "onCreate: BGMService start " + BGMService.class);
+        startService(intent);
+
         mainRg = findViewById(R.id.main_rg);
 
         db = new DBDefinitionManipulation(this);
 
         //todo: 获取前intent数据
         User user = (User) getIntent().getSerializableExtra("user");
-        Log.d(TAG, "onCreate: " + user);
+        Log.e(TAG, "onCreate: " + user);
         //todo: 加载数据到内存里
         Bundle bundle = new Bundle();
         bundle.putSerializable("userInfo", user);
@@ -91,23 +101,30 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 transaction.hide(meFrag);
                 transaction.hide(operationFrag);
                 transaction.show(defaultFrag);
-                Log.d(TAG, "onCheckedChanged: default");
+                Log.e(TAG, "onCheckedChanged: default");
                 break;
 
             case R.id.me_rb:
                 transaction.hide(defaultFrag);
                 transaction.hide(operationFrag);
                 transaction.show(meFrag);
-                Log.d(TAG, "onCheckedChanged: me");
+                Log.e(TAG, "onCheckedChanged: me");
                 break;
 
             case R.id.operation_rb:
                 transaction.hide(defaultFrag);
                 transaction.hide(meFrag);
                 transaction.show(operationFrag);
-                Log.d(TAG, "onCheckedChanged: operation");
+                Log.e(TAG, "onCheckedChanged: operation");
                 break;
         }
         transaction.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.e(TAG, "onCreate: BGMService stop " + BGMService.class);
+        stopService(intent);
+        super.onDestroy();
     }
 }

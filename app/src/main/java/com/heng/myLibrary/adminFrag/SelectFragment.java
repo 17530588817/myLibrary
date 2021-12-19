@@ -56,6 +56,8 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
         initView(view);
         showUsers();
         showBooks();
+        bookAdapter.clear();
+        userAdapter.clear();
 
         return view;
     }

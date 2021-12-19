@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.heng.myLibrary.database.entity.Book;
 import com.heng.myLibrary.database.entity.User;
@@ -98,30 +99,32 @@ public class DBDefinitionManipulation {
         if (!DBTools.checkCursor(cursor) || cursor.getInt(cursor.getColumnIndex(BOOK_STATUS)) == 1) {
             return false;
         }
-
         //获取用户的积分
-        cursor = db.query(USER_TABLE, new String[]{USER_CODE}, USER_NAME + "=?",
+        cursor = db.query(USER_TABLE, new String[]{USER_CODE}, USER_ACCOUNT + "=?",
                 new String[]{userName}, null, null, null);
         if (!DBTools.checkCursor(cursor)) {
             return false;
         }
         ContentValues values = new ContentValues();
         values.put(USER_BOOK, userBook);
-        values.put(USER_CODE, cursor.getInt(cursor.getColumnIndex(USER_CODE) + 1));
+        values.put(USER_CODE, cursor.getInt(cursor.getColumnIndex(USER_CODE)) + 1);
+
         db.update(USER_TABLE, values, USER_NAME + "=?", new String[]{userName});
 
         values.remove(USER_BOOK);
         values.remove(USER_CODE);
         values.put(BOOK_STATUS, 1);
         db.update(BOOK_TABLE, values, BOOK_NAME + "=?", new String[]{userBook});
+
         cursor.close();
+        Log.e(TAG, " lendBook 成功");
         return true;
     }
 
     /**
      * 还书
      */
-    @SuppressLint("Range")
+    @SuppressLint({"Range", "LongLogTag"})
     public boolean backBook(String userName, String userBook) {
         //检验此书是否借出
         Cursor cursor = db.query(BOOK_TABLE, new String[]{BOOK_STATUS}, BOOK_NAME + "=?",
@@ -137,6 +140,7 @@ public class DBDefinitionManipulation {
         values.put(BOOK_STATUS, 0);
         db.update(BOOK_TABLE, values, BOOK_NAME + "=?", new String[]{userBook});
 
+        Log.e(TAG, "backBook: ");
         return true;
     }
 

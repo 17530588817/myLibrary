@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.activity.LoginActivity;
 import com.heng.myLibrary.activity.MainActivity;
+import com.heng.myLibrary.activity.NewsActivity;
 import com.heng.myLibrary.database.bean.MeItemBean;
 import com.heng.myLibrary.database.entity.User;
 
@@ -55,7 +56,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     User user;
     ListView listView;
     List<MeItemBean> mDatas;
-    Button exitBtn;
+    Button exitBtn,newsBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,8 +88,10 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         codeTv = view.findViewById(R.id.user_code);
         listView = view.findViewById(R.id.me_lv);
         exitBtn = view.findViewById(R.id.exit_login);
+        newsBtn = view.findViewById(R.id.news);
 
         exitBtn.setOnClickListener(this);
+        newsBtn.setOnClickListener(this);
 
         //todo:设置监听器，选择相册图片当头像
         iconIv.setOnClickListener(new View.OnClickListener() {
@@ -233,6 +236,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             Intent intent = new Intent(getContext(), LoginActivity.class);
             startActivity(intent);
             Objects.requireNonNull(getActivity()).finish();
+        }else if(view.getId() == R.id.news){
+            Intent intent = new Intent(getContext(), NewsActivity.class);
+            startActivity(intent);
         }
     }
 }

@@ -6,17 +6,20 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.heng.myLibrary.R;
+import com.heng.myLibrary.activity.NewsActivity;
 import com.heng.myLibrary.database.bean.DefaultGVItem;
 
 import java.util.ArrayList;
@@ -25,7 +28,7 @@ import java.util.List;
 /**
  * default主界面
  */
-public class DefaultFragment extends Fragment {
+public class DefaultFragment extends Fragment implements View.OnClickListener{
 
     List<DefaultGVItem> mDatas;
     private GVAdapter adapter;
@@ -82,6 +85,9 @@ public class DefaultFragment extends Fragment {
         //todo: 设置小圆点的监听
         setVPListener();
 
+//        //todo: 设置gridview的监听
+//        setGVListener();
+
         //todo: 延迟5秒钟发送一条消息，通知可以切换viewpager的图片了
         handler.sendEmptyMessageDelayed(1, 5000);
 
@@ -116,6 +122,7 @@ public class DefaultFragment extends Fragment {
         //todo: 设置适配器
         defaultGv.setAdapter(adapter);
     }
+
 
     private void setVPListener() {
         defaultVp.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -177,5 +184,19 @@ public class DefaultFragment extends Fragment {
         defaultVp = view.findViewById(R.id.default_img_vp);
         defaultGv = view.findViewById(R.id.default_gv);
         pointLayout = view.findViewById(R.id.default_point);
+
+        defaultVp.setOnClickListener(this);
+    }
+
+    // todo: 点击图片跳转到新闻界面
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.default_img_vp:
+                Intent intent = new Intent(getContext(), NewsActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

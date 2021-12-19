@@ -209,7 +209,7 @@
                 android:layout_weight="3"
                 android:background="@drawable/register_bg"
                 android:gravity="center"
-                android:text="注册"
+                android:text="添加"
                 android:textSize="20sp" />
 
             <TextView

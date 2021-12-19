@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Intent intent = new Intent(this, AdminActivity.class);
                     accountTv.setText("");
                     passwordTv.setText("");
-                    Log.d(TAG, " admin 登陆成功");
+                    Log.e(TAG, " admin 登陆成功");
                     startActivity(intent);
                 } else if (checkUser() == 2) {
                     Intent intent = new Intent(this, MainActivity.class);
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     intent.putExtra("user", getUser(accountTv.getText().toString()));
                     startActivity(intent);
 
-                    Log.d(TAG, " user 登陆成功");
+                    Log.e(TAG, " user 登陆成功");
                     finish();
                 } else {
                     Toast.makeText(this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.register_btn:
                 Intent intent = new Intent(this, RegisterActivity.class);
-                Log.d(TAG, " 进入 register 注册");
+                Log.e(TAG, " 进入 register 注册");
                 startActivity(intent);
                 break;
         }
@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //todo: 验证用户身份
     private Integer checkUser() {
         Integer checkUserFlag = db.checkUser(accountTv.getText().toString(), passwordTv.getText().toString(), userIdentity());
-        Log.d(TAG, "checkUser: + level = " + checkUserFlag);
+        Log.e(TAG, "checkUser: + level = " + checkUserFlag);
         return checkUserFlag;
     }
 

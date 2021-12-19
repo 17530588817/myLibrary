@@ -30,7 +30,6 @@ import java.util.List;
  * <p>
  * 借还界面
  */
-
 public class OperationFragment extends Fragment implements View.OnClickListener {
 
     User user;
@@ -146,15 +145,16 @@ public class OperationFragment extends Fragment implements View.OnClickListener 
 
     private void addBooksToList(Book[] books) {
         mBookDatas = new ArrayList<>();
-        for (Book book : books) {
-            SelectBookItem bookItem = new SelectBookItem();
-            bookItem.setBookName(book.getBookName());
-            bookItem.setBookAuthor(book.getAuthor());
-            bookItem.setBookStatus(book.getStatus());
-            bookItem.setBookNumber(book.getBookNumber());
-            mBookDatas.add(bookItem);
+        if (books != null) {
+            for (Book book : books) {
+                SelectBookItem bookItem = new SelectBookItem();
+                bookItem.setBookName(book.getBookName());
+                bookItem.setBookAuthor(book.getAuthor());
+                bookItem.setBookStatus(book.getStatus());
+                bookItem.setBookNumber(book.getBookNumber());
+                mBookDatas.add(bookItem);
+            }
         }
-
         // 设置适配器
         bookAdapter = new SelectBookAdapter(getContext(), mBookDatas);
         booksLv.setAdapter(bookAdapter);

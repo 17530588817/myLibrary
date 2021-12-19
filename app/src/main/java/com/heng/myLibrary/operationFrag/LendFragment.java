@@ -1,6 +1,7 @@
 package com.heng.myLibrary.operationFrag;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
  */
 
 public class LendFragment extends Fragment implements View.OnClickListener{
+    private static final String TAG = "LendFragment";
     DBDefinitionManipulation db;
     EditText lendUserName,lendBookName;
     Button lendBtn;
@@ -63,6 +65,8 @@ public class LendFragment extends Fragment implements View.OnClickListener{
         db.open();
         boolean lendBookFlag = db.lendBook(userName, bookName);
         db.close();
+        Log.e(TAG, "userLendBook->> username:" + userName +"  bookname: " + bookName);
+        Log.e(TAG, "userLendBook->> lendBookFlag:" + lendBookFlag);
         return lendBookFlag;
     }
 }
