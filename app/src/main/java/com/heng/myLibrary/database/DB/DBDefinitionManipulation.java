@@ -99,21 +99,22 @@ public class DBDefinitionManipulation {
         if (!DBTools.checkCursor(cursor) || cursor.getInt(cursor.getColumnIndex(BOOK_STATUS)) == 1) {
             return false;
         }
+        //------------------------------------------------------------------------------------
         //获取用户的积分
         cursor = db.query(USER_TABLE, new String[]{USER_CODE}, USER_ACCOUNT + "=?",
                 new String[]{userName}, null, null, null);
         if (!DBTools.checkCursor(cursor)) {
             return false;
         }
+//        Log.e(TAG, "lendBook: code:" + cursor.getInt(cursor.getColumnIndex(USER_CODE)));
+        int userCode = cursor.getInt(cursor.getColumnIndex(USER_CODE)) + 1;
+        String sql = "update " + USER_TABLE + " set " + USER_CODE + " = " + userCode
+                +" where " +USER_ACCOUNT + " = " + userName;
+        db.execSQL(sql);
+
+        //--------------------------------------------------------------------------------------------
+
         ContentValues values = new ContentValues();
-        values.put(USER_BOOK, userBook);
-        values.put(USER_CODE, cursor.getInt(cursor.getColumnIndex(USER_CODE)) + 1);
-        Log.e(TAG, "lendBook: code:" + cursor.getInt(cursor.getColumnIndex(USER_CODE)));
-
-        db.update(USER_TABLE, values, USER_NAME + "=?", new String[]{userName});
-
-        values.remove(USER_BOOK);
-        values.remove(USER_CODE);
         values.put(BOOK_STATUS, 1);
         db.update(BOOK_TABLE, values, BOOK_NAME + "=?", new String[]{userBook});
 
@@ -134,6 +135,18 @@ public class DBDefinitionManipulation {
             return false;
         }
 
+        //还书。积分加1
+        cursor = db.query(USER_TABLE, new String[]{USER_CODE}, USER_ACCOUNT + "=?",
+                new String[]{userName}, null, null, null);
+        if (!DBTools.checkCursor(cursor)) {
+            return false;
+        }
+        int userCode = cursor.getInt(cursor.getColumnIndex(USER_CODE)) + 1;
+        String sql = "update " + USER_TABLE + " set " + USER_CODE + " = " + userCode
+                +" where " +USER_ACCOUNT + " = " + userName;
+        db.execSQL(sql);
+
+        //正式还书
         ContentValues values = new ContentValues();
         values.put(USER_BOOK, "");
         db.update(USER_TABLE, values, USER_NAME + "=?", new String[]{userName});

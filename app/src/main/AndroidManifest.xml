@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Library">
         <activity
+            android:name=".activity.HelperActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.NewsActivity"
             android:exported="true" />
         <activity
@@ -39,14 +42,14 @@
             android:name=".activity.AdminActivity"
             android:exported="true" />
 
-        <service android:name=".service.BGMService"/>
+        <service android:name=".service.BGMService" />
 
         <receiver
             android:name=".broadcastReceiver.MyBroadcastReceiver"
-            android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-                <action android:name="Broadcast_Action_BGM"/>
+                <action android:name="Broadcast_Action_BGM" />
             </intent-filter>
         </receiver>
     </application>

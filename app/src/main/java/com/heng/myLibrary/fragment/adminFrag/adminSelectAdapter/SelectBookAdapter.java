@@ -1,4 +1,4 @@
-package com.heng.myLibrary.fragment.adminFrag.selectAdapter;
+package com.heng.myLibrary.fragment.adminFrag.adminSelectAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

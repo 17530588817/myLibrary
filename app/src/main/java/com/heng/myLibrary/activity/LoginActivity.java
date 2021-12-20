@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText accountTv, passwordTv;
     Button loginBtn, registerBtn;
     DBDefinitionManipulation db;
+    ImageView helperImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +50,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         registerBtn = findViewById(R.id.register_btn);
         userBtn = findViewById(R.id.login_user_btn);
         adminBtn = findViewById(R.id.login_admin_btn);
+        helperImg = findViewById(R.id.login_helper_image);
 
         loginBtn.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
+        helperImg.setOnClickListener(this);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -83,6 +87,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Intent intent = new Intent(this, RegisterActivity.class);
                 Log.e(TAG, " 进入 register 注册");
                 startActivity(intent);
+                break;
+
+            case R.id.login_helper_image:
+                startActivity(new Intent(this,HelperActivity.class));
                 break;
         }
         db.close();

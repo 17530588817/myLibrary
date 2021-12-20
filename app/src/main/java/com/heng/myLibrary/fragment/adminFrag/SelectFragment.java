@@ -13,8 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.heng.myLibrary.R;
-import com.heng.myLibrary.fragment.adminFrag.selectAdapter.SelectBookAdapter;
-import com.heng.myLibrary.fragment.adminFrag.selectAdapter.SelectUserAdapter;
+import com.heng.myLibrary.fragment.adminFrag.adminSelectAdapter.SelectBookAdapter;
+import com.heng.myLibrary.fragment.adminFrag.adminSelectAdapter.SelectUserAdapter;
 import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 import com.heng.myLibrary.database.bean.SelectBookItem;
 import com.heng.myLibrary.database.bean.SelectUserItem;
@@ -150,6 +150,7 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
             userItem.setUserPhone(user.getPhone());
             userItem.setUserEmail(user.getEmail());
             userItem.setUserLevel(user.getUserLevel());
+            userItem.setUserCode(user.getUserCode());
             mUserDatas.add(userItem);
         }
         // 设置适配器

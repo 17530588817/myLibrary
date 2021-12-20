@@ -11,6 +11,15 @@ public class SelectUserItem {
     private String userName;
     private String userSex;
     private String userPhone;
+    private Integer userCode;
+
+    public Integer getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(Integer userCode) {
+        this.userCode = userCode;
+    }
 
     public Integer getUserLevel() {
         return userLevel;
@@ -71,6 +80,7 @@ public class SelectUserItem {
                 "userName='" + userName + '\'' +
                 ", userSex='" + userSex + '\'' +
                 ", userPhone='" + userPhone + '\'' +
+                ", userCode='" + userCode + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", userLevel=" + userLevel +
                 '}';

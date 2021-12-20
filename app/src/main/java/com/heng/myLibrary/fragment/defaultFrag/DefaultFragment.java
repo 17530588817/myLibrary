@@ -30,7 +30,7 @@ import java.util.List;
 public class DefaultFragment extends Fragment implements View.OnClickListener{
 
     List<DefaultGVItem> mDatas;
-    private GVAdapter adapter;
+    private DefaultGVAdapter adapter;
 
     ViewPager defaultVp;
     GridView defaultGv;
@@ -44,7 +44,7 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
 
     //todo: 声明管理指示器小圆点的集合
     List<ImageView> pointList;
-    private VPAdapter vPAdapter;
+    private DefaultVPAdapter vPAdapterDefault;
 
     //todo: 完成定时装置，实现自动滑动的效果
     @SuppressLint("HandlerLeak")
@@ -117,7 +117,7 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
         mDatas.add(a8);
         mDatas.add(a9);
         //todo: 创建适配器对象
-        adapter = new GVAdapter(getContext(), mDatas);
+        adapter = new DefaultGVAdapter(getContext(), mDatas);
         //todo: 设置适配器
         defaultGv.setAdapter(adapter);
     }
@@ -170,8 +170,8 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
 
         //todo: 默认第一个小圆点是获取焦点的状态
         pointList.get(0).setImageResource(R.mipmap.point_focus);
-        vPAdapter = new VPAdapter(getContext(), ivList);
-        defaultVp.setAdapter(vPAdapter);
+        vPAdapterDefault = new DefaultVPAdapter(getContext(), ivList);
+        defaultVp.setAdapter(vPAdapterDefault);
     }
 
     /**

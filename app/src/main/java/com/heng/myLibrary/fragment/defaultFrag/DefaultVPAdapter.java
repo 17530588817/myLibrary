@@ -16,13 +16,13 @@ import java.util.List;
  * <p>
  * 首页面的viewpager图片的适配器
  */
-public class VPAdapter extends PagerAdapter {
+public class DefaultVPAdapter extends PagerAdapter {
 
     Context context;
     List<ImageView> imgList;
 
 
-    public VPAdapter(Context context, List<ImageView> imgList) {
+    public DefaultVPAdapter(Context context, List<ImageView> imgList) {
         this.context = context;
         this.imgList = imgList;
     }

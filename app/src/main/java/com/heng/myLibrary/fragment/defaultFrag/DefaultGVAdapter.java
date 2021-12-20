@@ -19,7 +19,7 @@ import java.util.List;
  * @date : 2021/11/21 16:23
  */
 
-public class GVAdapter extends BaseAdapter {
+public class DefaultGVAdapter extends BaseAdapter {
     Context context;
     List<DefaultGVItem> mDatas;
 
@@ -28,7 +28,7 @@ public class GVAdapter extends BaseAdapter {
     List<ImageView> ivList;
 
 
-    public GVAdapter(Context context, List<DefaultGVItem> mDatas) {
+    public DefaultGVAdapter(Context context, List<DefaultGVItem> mDatas) {
         this.context = context;
         this.mDatas = mDatas;
     }

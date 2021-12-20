@@ -1,4 +1,4 @@
-package com.heng.myLibrary.fragment.adminFrag.selectAdapter;
+package com.heng.myLibrary.fragment.adminFrag.adminSelectAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -61,6 +61,7 @@ public class SelectUserAdapter extends BaseAdapter {
         holder.userSexTv.setText(userItem.getUserSex());
         holder.userPhoneTv.setText(userItem.getUserPhone());
         holder.userEmailTv.setText(userItem.getUserEmail());
+        holder.userCode.setText(userItem.getUserCode().toString());
         if (userItem.getUserLevel() == 1) {
             holder.userLevel.setText("管理员");
         } else {
@@ -71,7 +72,7 @@ public class SelectUserAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        TextView userNameTv, userSexTv, userPhoneTv, userEmailTv, userLevel;
+        TextView userNameTv, userSexTv, userPhoneTv, userEmailTv, userLevel,userCode;
 
         public ViewHolder(View view) {
             userNameTv = view.findViewById(R.id.select_user_name);
@@ -79,6 +80,7 @@ public class SelectUserAdapter extends BaseAdapter {
             userPhoneTv = view.findViewById(R.id.select_user_phone);
             userEmailTv = view.findViewById(R.id.select_user_email);
             userLevel = view.findViewById(R.id.select_user_level);
+            userCode = view.findViewById(R.id.select_user_code);
         }
     }
 
