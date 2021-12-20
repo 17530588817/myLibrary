@@ -201,12 +201,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         MeItemBean collection = new MeItemBean("我的收藏", "", "");
         MeItemBean bookReview = new MeItemBean("我的书评", "", "");
         MeItemBean bookLend = new MeItemBean("我借的书", "", "");
+        MeItemBean setting = new MeItemBean("设置", "", "");
 
         mDatas.add(userCode);
         mDatas.add(inLibTime);
         mDatas.add(collection);
         mDatas.add(bookReview);
         mDatas.add(bookLend);
+        mDatas.add(setting);
 
         //todo:  设置适配器
         MeItemAdapter adapter = new MeItemAdapter(getContext(), mDatas);

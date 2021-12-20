@@ -108,6 +108,7 @@ public class DBDefinitionManipulation {
         ContentValues values = new ContentValues();
         values.put(USER_BOOK, userBook);
         values.put(USER_CODE, cursor.getInt(cursor.getColumnIndex(USER_CODE)) + 1);
+        Log.e(TAG, "lendBook: code:" + cursor.getInt(cursor.getColumnIndex(USER_CODE)));
 
         db.update(USER_TABLE, values, USER_NAME + "=?", new String[]{userName});
 

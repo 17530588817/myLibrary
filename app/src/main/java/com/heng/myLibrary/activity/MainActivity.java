@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.heng.myLibrary.R;
+import com.heng.myLibrary.broadcastReceiver.BatteryReceiver;
 import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 import com.heng.myLibrary.database.entity.User;
 import com.heng.myLibrary.fragment.defaultFrag.DefaultFragment;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     Intent bgmServiceIntent, broadcastReceiverIntent;
     ImageView bgmIv;
     boolean bgmFlag = true;
+    BatteryReceiver batteryReceiver;
 
 
     //todo: 声明两个按钮对应的Fragment对象
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         Log.e(TAG, "onCreate: BGMService start " + BGMService.class);
         startService(bgmServiceIntent);
 
-        // todo: 广播(bgm开启)
+        // todo: 广播(显示bgm开启)
         broadcastReceiverIntent = new Intent();
 
         // 定义广播的事件类型
@@ -63,6 +66,13 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         Log.e(TAG, "onCreate: broadcastReceiverIntent start ");
         // 发送广播
         sendBroadcast(broadcastReceiverIntent);
+
+        //todo:广播,获取当前手机电量
+        IntentFilter intentFilter = new IntentFilter(
+                Intent.ACTION_BATTERY_CHANGED);
+        batteryReceiver = new BatteryReceiver();
+        // 注册receiver
+        registerReceiver(batteryReceiver, intentFilter);
 
         mainRg = findViewById(R.id.main_rg);
         bgmIv = findViewById(R.id.mainActivity_image_bgm);
@@ -158,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     protected void onDestroy() {
         Log.e(TAG, "onCreate: BGMService stop " + BGMService.class);
         stopService(bgmServiceIntent);
+        unregisterReceiver(batteryReceiver);
         super.onDestroy();
     }
 }
