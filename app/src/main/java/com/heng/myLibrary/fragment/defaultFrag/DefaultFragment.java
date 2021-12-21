@@ -13,11 +13,13 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.heng.myLibrary.R;
+import com.heng.myLibrary.activity.CodePartyAvtivity;
 import com.heng.myLibrary.activity.InCodeActivity;
 import com.heng.myLibrary.activity.NewsActivity;
 import com.heng.myLibrary.adapter.DefaultGVAdapter;
@@ -30,17 +32,17 @@ import java.util.List;
 /**
  * default主界面
  */
-public class DefaultFragment extends Fragment implements View.OnClickListener{
+public class DefaultFragment extends Fragment implements View.OnClickListener {
 
     List<DefaultGVItem> mDatas;
     private DefaultGVAdapter adapter;
 
     ViewPager defaultVp;
     GridView defaultGv;
-    LinearLayout pointLayout,in_code_layout;
+    LinearLayout pointLayout, in_code_layout;
 
     //todo: 声明图片数组
-    int[] imgIds = {R.mipmap.ib_default01, R.mipmap.ib_default02};
+    int[] imgIds = {R.mipmap.ib_default01, R.mipmap.pic_guanggao};
 
     //todo: 声明ViewPager的数据源
     List<ImageView> ivList;
@@ -66,7 +68,7 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
                     currentItem++;
                     defaultVp.setCurrentItem(currentItem);
                 }
-                 //todo: 形成循环发送--接受消息的效果，在接受消息的同时，也要进行消息发送
+                //todo: 形成循环发送--接受消息的效果，在接受消息的同时，也要进行消息发送
                 handler.sendEmptyMessageDelayed(1, 5000);
             }
         }
@@ -84,11 +86,11 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
 
         initGV();
 
+        // todo:设置GridView的监听事件函数
+        setGVListener();
+
         //todo: 设置小圆点的监听
         setVPListener();
-
-//        //todo: 设置gridview的监听
-//        setGVListener();
 
         //todo: 延迟5秒钟发送一条消息，通知可以切换viewpager的图片了
         handler.sendEmptyMessageDelayed(1, 5000);
@@ -96,13 +98,37 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
         return view;
     }
 
+    /**
+     * 设置GridView的监听事件函数
+     */
+    private void setGVListener() {
+        defaultGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                DefaultGVItem defaultGVItem = mDatas.get(position);
+                Intent intent;
+                switch (position) {
+                    case 0:
+                        intent = new Intent(getContext(), InCodeActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(getContext(), CodePartyAvtivity.class);
+                        startActivity(intent);
+                        break;
+
+                }
+            }
+        });
+    }
+
     private void initGV() {
+        DefaultGVItem nowInto = new DefaultGVItem("我要入馆", null, "", "");
         DefaultGVItem startRead = new DefaultGVItem("开始阅读", null, "", "");
         DefaultGVItem allBooks = new DefaultGVItem("馆藏图书", null, "", "");
         DefaultGVItem beforeInto = new DefaultGVItem("入馆预约", null, "", "");
         DefaultGVItem activities = new DefaultGVItem("积分活动", null, "", "");
         DefaultGVItem bookAdvice = new DefaultGVItem("每日推荐", null, "", "");
-        DefaultGVItem nowInto = new DefaultGVItem("我要入馆", null, "", "");
         DefaultGVItem a7 = new DefaultGVItem("待续", null, "", "");
         DefaultGVItem a8 = new DefaultGVItem("待续", null, "", "");
         DefaultGVItem a9 = new DefaultGVItem("待续", null, "", "");
@@ -110,12 +136,12 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
 
         mDatas = new ArrayList<>();
 
+        mDatas.add(nowInto);
+        mDatas.add(activities);
         mDatas.add(startRead);
         mDatas.add(allBooks);
         mDatas.add(beforeInto);
-        mDatas.add(nowInto);
         mDatas.add(bookAdvice);
-        mDatas.add(activities);
         mDatas.add(a7);
         mDatas.add(a8);
         mDatas.add(a9);
@@ -195,7 +221,7 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.default_img_vp:
                 Intent intent = new Intent(getContext(), NewsActivity.class);
                 startActivity(intent);
