@@ -1,4 +1,4 @@
-package com.heng.myLibrary.database.entity;
+package com.heng.myLibrary.database.bean;
 
 /**
  * @author : HengZhang

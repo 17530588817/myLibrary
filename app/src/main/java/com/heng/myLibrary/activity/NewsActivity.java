@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.adapter.NewsAdapter;
-import com.heng.myLibrary.database.entity.NewsInfo;
+import com.heng.myLibrary.database.bean.NewsInfo;
 import com.heng.myLibrary.util.JsonParse;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;

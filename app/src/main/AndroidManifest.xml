@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Library">
         <activity
+            android:name=".activity.InCodeActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.HelperActivity"
             android:exported="true" />
         <activity

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.heng.myLibrary.R;
 
-import com.heng.myLibrary.database.entity.NewsInfo;
+import com.heng.myLibrary.database.bean.NewsInfo;
 import com.loopj.android.image.SmartImageView;
 
 import java.util.List;

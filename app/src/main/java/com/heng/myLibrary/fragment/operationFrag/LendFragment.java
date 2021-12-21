@@ -19,6 +19,8 @@ import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 /**
  * @author : HengZhang
  * @date : 2021/11/23 19:22
+ *
+ * 借书界面
  */
 
 public class LendFragment extends Fragment implements View.OnClickListener{

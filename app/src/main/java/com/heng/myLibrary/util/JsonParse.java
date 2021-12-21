@@ -2,7 +2,7 @@ package com.heng.myLibrary.util;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.heng.myLibrary.database.entity.NewsInfo;
+import com.heng.myLibrary.database.bean.NewsInfo;
 
 import java.lang.reflect.Type;
 import java.util.List;

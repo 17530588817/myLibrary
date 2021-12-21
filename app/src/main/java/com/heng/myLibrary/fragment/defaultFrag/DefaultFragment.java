@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.heng.myLibrary.R;
+import com.heng.myLibrary.activity.InCodeActivity;
 import com.heng.myLibrary.activity.NewsActivity;
 import com.heng.myLibrary.adapter.DefaultGVAdapter;
 import com.heng.myLibrary.adapter.DefaultVPAdapter;
@@ -36,7 +37,7 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
 
     ViewPager defaultVp;
     GridView defaultGv;
-    LinearLayout pointLayout;
+    LinearLayout pointLayout,in_code_layout;
 
     //todo: 声明图片数组
     int[] imgIds = {R.mipmap.ib_default01, R.mipmap.ib_default02};
@@ -185,8 +186,9 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
         defaultVp = view.findViewById(R.id.default_img_vp);
         defaultGv = view.findViewById(R.id.default_gv);
         pointLayout = view.findViewById(R.id.default_point);
+        in_code_layout = view.findViewById(R.id.in_code_layout);
 
-        defaultVp.setOnClickListener(this);
+        in_code_layout.setOnClickListener(this);
     }
 
     // todo: 点击图片跳转到新闻界面
@@ -197,6 +199,9 @@ public class DefaultFragment extends Fragment implements View.OnClickListener{
             case R.id.default_img_vp:
                 Intent intent = new Intent(getContext(), NewsActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.in_code_layout:
+                startActivity(new Intent(getContext(), InCodeActivity.class));
                 break;
         }
     }
