@@ -23,6 +23,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignRight="@+id/main_title"
+        android:layout_centerHorizontal="true"
         android:layout_marginRight="10dp" />
 
     <RadioGroup

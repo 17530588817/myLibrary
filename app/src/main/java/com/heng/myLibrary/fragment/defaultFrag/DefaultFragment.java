@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.heng.myLibrary.R;
-import com.heng.myLibrary.activity.CodePartyAvtivity;
+import com.heng.myLibrary.activity.CodePartyActivity;
 import com.heng.myLibrary.activity.InCodeActivity;
 import com.heng.myLibrary.activity.NewsActivity;
 import com.heng.myLibrary.adapter.DefaultGVAdapter;
@@ -113,7 +113,7 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
                         startActivity(intent);
                         break;
                     case 1:
-                        intent = new Intent(getContext(), CodePartyAvtivity.class);
+                        intent = new Intent(getContext(), CodePartyActivity.class);
                         startActivity(intent);
                         break;
 

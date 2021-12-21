@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Library">
         <activity
-            android:name=".activity.CodePartyAvtivity"
+            android:name=".activity.CodePartyActivity"
             android:exported="true" />
         <activity
             android:name=".activity.InCodeActivity"

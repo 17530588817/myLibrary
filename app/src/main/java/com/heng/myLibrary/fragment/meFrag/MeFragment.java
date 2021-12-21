@@ -26,6 +26,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -52,7 +53,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     CircleImageView iconIv;
     TextView nameTv, codeTv;
     User user;
-    ListView listView;
+    ListView meLv;
     List<MeItemBean> mDatas;
     Button exitBtn,newsBtn;
 
@@ -77,14 +78,35 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         initView(view);
         addDataToList();
         loadUserImg();
+
+        //todo: listview设置触发事件
+        setLvListener();
+
         return view;
+    }
+
+    private void setLvListener() {
+        meLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        // 我的积分
+                        Toast.makeText(getContext(),"当前积分：",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        break;
+
+                }
+            }
+        });
     }
 
     private void initView(View view) {
         iconIv = view.findViewById(R.id.meFrag_iv);
         nameTv = view.findViewById(R.id.user_name);
         codeTv = view.findViewById(R.id.user_code);
-        listView = view.findViewById(R.id.me_lv);
+        meLv = view.findViewById(R.id.me_lv);
         exitBtn = view.findViewById(R.id.exit_login);
         newsBtn = view.findViewById(R.id.news);
 
@@ -213,7 +235,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
         //todo:  设置适配器
         MeItemAdapter adapter = new MeItemAdapter(getContext(), mDatas);
-        listView.setAdapter(adapter);
+        meLv.setAdapter(adapter);
     }
 
     //todo: 设置默认头像

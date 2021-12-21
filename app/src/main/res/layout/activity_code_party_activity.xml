@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CodePartyAvtivity">
+    tools:context=".activity.CodePartyActivity">
 
     <TextView
         android:id="@+id/main_title"
@@ -35,9 +35,9 @@
         android:text="积分活动"/>
 
     <ListView
-        android:layout_below="@+id/code_party_title"
-        android:id="@+id/code_party_content"
+        android:id="@+id/code_party_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/code_party_title" />
 
 </RelativeLayout>

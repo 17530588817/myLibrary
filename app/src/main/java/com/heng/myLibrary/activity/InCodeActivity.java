@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import com.heng.myLibrary.R;
 
 /**
+ * @author : HengZhang
+ * @date : 2021/12/21 22:19
  * 入馆码界面
  */
 public class InCodeActivity extends AppCompatActivity {
@@ -18,7 +20,7 @@ public class InCodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_in_code_avtivity);
+        setContentView(R.layout.activity_in_code_activity);
 
         backImg = findViewById(R.id.incode_back);
         backImg.setOnClickListener(new View.OnClickListener() {
