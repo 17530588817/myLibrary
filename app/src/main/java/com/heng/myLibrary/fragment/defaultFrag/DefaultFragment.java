@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.activity.NewsActivity;
+import com.heng.myLibrary.adapter.DefaultGVAdapter;
+import com.heng.myLibrary.adapter.DefaultVPAdapter;
 import com.heng.myLibrary.database.bean.DefaultGVItem;
 
 import java.util.ArrayList;

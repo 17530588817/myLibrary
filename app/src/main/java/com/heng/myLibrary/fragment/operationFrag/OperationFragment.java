@@ -15,7 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.heng.myLibrary.R;
-import com.heng.myLibrary.fragment.adminFrag.adminSelectAdapter.SelectBookAdapter;
+import com.heng.myLibrary.adapter.SelectBookAdapter;
+import com.heng.myLibrary.adapter.operationVPAdapter;
 import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 import com.heng.myLibrary.database.bean.SelectBookItem;
 import com.heng.myLibrary.database.entity.Book;

@@ -54,7 +54,7 @@ public class BackFragment extends Fragment implements View.OnClickListener {
             if (userBackBook(backUserName.getText().toString().trim(), backBookName.getText().toString().trim())) {
                 Toast.makeText(getContext(), "还书成功", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getContext(), "还书成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "还书失败", Toast.LENGTH_SHORT).show();
             }
         }
     }

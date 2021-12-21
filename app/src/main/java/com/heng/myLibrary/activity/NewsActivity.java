@@ -2,19 +2,15 @@ package com.heng.myLibrary.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.heng.myLibrary.R;
+import com.heng.myLibrary.adapter.NewsAdapter;
 import com.heng.myLibrary.database.entity.NewsInfo;
 import com.heng.myLibrary.util.JsonParse;
 import com.loopj.android.http.AsyncHttpClient;
@@ -56,7 +52,7 @@ public class NewsActivity extends AppCompatActivity {
         //创建AsyncHttpClient实例
         AsyncHttpClient client = new AsyncHttpClient();
         //使用GET方式请求
-        client.get("http://10.200.8.187:8080/chapter12/test.json", new AsyncHttpResponseHandler() {
+        client.get("http://10.200.10.10:8080/chapter12/test.json", new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
                 //请求成功
@@ -68,7 +64,7 @@ public class NewsActivity extends AppCompatActivity {
                     } else {
                         //更新界面
                         loading.setVisibility(View.INVISIBLE);
-                        lvNews.setAdapter(new NewsAdapter());
+                        lvNews.setAdapter(new NewsAdapter(getBaseContext(),newsInfos));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -77,66 +73,9 @@ public class NewsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-
             }
         });
     }
 
-    //ListView适配器
-    private class NewsAdapter extends BaseAdapter {
-        //listview的item数
-        @Override
-        public int getCount() {
-            return newsInfos.size();
-        }
-
-        //得到listview条目视图
-        @SuppressLint("SetTextI18n")
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            @SuppressLint("ViewHolder")
-            View view = View.inflate(NewsActivity.this, R.layout.item_news, null);
-            siv = (SmartImageView) view.findViewById(R.id.siv_icon);
-            tv_title = (TextView) view.findViewById(R.id.tv_title);
-            tv_description = (TextView) view.findViewById(R.id.tv_description);
-            tv_type = (TextView) view.findViewById(R.id.tv_type);
-            newsInfo = newsInfos.get(position);
-            //SmartImageView加载指定路径图片
-            siv.setImageUrl(newsInfo.getIcon(), R.drawable.ic_launcher, R.drawable.ic_launcher);
-            //设置新闻标题
-            tv_title.setText(newsInfo.getTitle());
-            //设置新闻描述
-            tv_description.setText(newsInfo.getContent());
-            //1.一般新闻 2.专题 3.live
-            int type = newsInfo.getType();
-            switch (type) {
-                //不同新闻类型设置不同的颜色和不同的内容
-                case 1:
-                    tv_type.setText("评论:" + newsInfo.getComment());
-                    break;
-                case 2:
-                    tv_type.setTextColor(Color.RED);
-                    tv_type.setText("专题");
-                    break;
-                case 3:
-                    tv_type.setTextColor(Color.BLUE);
-                    tv_type.setText("LIVE");
-                    break;
-            }
-            return view;
-        }
-
-        //条目对象
-        @Override
-        public Object getItem(int position) {
-            return newsInfos.get(position) ;
-        }
-
-        //条目id
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-    }
 }
 

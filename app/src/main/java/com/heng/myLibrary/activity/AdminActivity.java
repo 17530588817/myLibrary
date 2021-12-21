@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.heng.myLibrary.R;
-import com.heng.myLibrary.fragment.adminFrag.AdminAdapter;
+import com.heng.myLibrary.adapter.AdminFragAdapter;
 import com.heng.myLibrary.fragment.adminFrag.BookFragment;
 import com.heng.myLibrary.fragment.adminFrag.SelectFragment;
 import com.heng.myLibrary.fragment.adminFrag.UserFragment;
@@ -27,7 +27,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
     ViewPager adminVp;
     Fragment bookFrag, userFrag, selectFrag;
     List<Fragment> adminVPList;
-    AdminAdapter adminAdapter;
+    AdminFragAdapter adminFragAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +49,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         adminVPList.add(bookFrag);
         adminVPList.add(userFrag);
         adminVPList.add(selectFrag);
-        adminAdapter = new AdminAdapter(getSupportFragmentManager(), adminVPList);
-        adminVp.setAdapter(adminAdapter);
+        adminFragAdapter = new AdminFragAdapter(getSupportFragmentManager(), adminVPList);
+        adminVp.setAdapter(adminFragAdapter);
     }
 
     //todo:初始化UI

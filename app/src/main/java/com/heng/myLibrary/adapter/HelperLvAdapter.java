@@ -1,4 +1,4 @@
-package com.heng.myLibrary.activity;
+package com.heng.myLibrary.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

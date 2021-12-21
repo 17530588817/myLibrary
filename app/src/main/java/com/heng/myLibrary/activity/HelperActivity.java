@@ -2,13 +2,13 @@ package com.heng.myLibrary.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.heng.myLibrary.R;
+import com.heng.myLibrary.adapter.HelperLvAdapter;
 import com.heng.myLibrary.database.bean.HelperItemBean;
 
 import java.util.ArrayList;

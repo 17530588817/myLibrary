@@ -1,4 +1,4 @@
-package com.heng.myLibrary.fragment.adminFrag;
+package com.heng.myLibrary.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -9,13 +9,15 @@ import java.util.List;
 
 /**
  * @author : HengZhang
- * @date : 2021/11/28 15:56
+ * @date : 2021/11/23 19:46
  */
 
-public class AdminAdapter  extends FragmentPagerAdapter {
+public class operationVPAdapter extends FragmentPagerAdapter {
+
     List<Fragment> fragmentList;
 
-    public AdminAdapter(@NonNull FragmentManager fm, List<Fragment> fragmentList) {
+
+    public operationVPAdapter(@NonNull FragmentManager fm, List<Fragment> fragmentList) {
         super(fm);
         this.fragmentList = fragmentList;
     }

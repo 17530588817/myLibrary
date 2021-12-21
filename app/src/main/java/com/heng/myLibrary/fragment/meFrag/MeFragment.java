@@ -34,6 +34,7 @@ import android.widget.Toast;
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.activity.LoginActivity;
 import com.heng.myLibrary.activity.NewsActivity;
+import com.heng.myLibrary.adapter.MeItemAdapter;
 import com.heng.myLibrary.database.bean.MeItemBean;
 import com.heng.myLibrary.database.entity.User;
 
