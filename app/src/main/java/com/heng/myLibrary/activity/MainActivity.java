@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.heng.myLibrary.fragment.defaultFrag.DefaultFragment;
 import com.heng.myLibrary.fragment.meFrag.MeFragment;
 import com.heng.myLibrary.fragment.operationFrag.OperationFragment;
 import com.heng.myLibrary.service.BGMService;
+import com.heng.myLibrary.util.MyLogging;
 
 /**
  * @author : HengZhang
@@ -50,50 +52,21 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // todo:开启BGM
-        bgmServiceIntent = new Intent(this, BGMService.class);
-        bgmServiceIntent.putExtra("action", "play");
-        Log.e(TAG, "onCreate: BGMService start " + BGMService.class);
-        startService(bgmServiceIntent);
+        MyLogging.myLog(TAG, "onCreate()");
 
-        // todo: 广播(显示bgm开启)
-        broadcastReceiverIntent = new Intent();
+        mainStartService();
 
-        // 定义广播的事件类型
-        broadcastReceiverIntent.setAction("Broadcast_Action_BGM");
-        broadcastReceiverIntent.setComponent(new ComponentName(getPackageName(),
-                getPackageName() + "MyBroadcastReceiver"));
-        Log.e(TAG, "onCreate: broadcastReceiverIntent start ");
-        // 发送广播
-        sendBroadcast(broadcastReceiverIntent);
+        mainStartBroadcastReceiver();
 
-        //todo:广播,获取当前手机电量
-        IntentFilter intentFilter = new IntentFilter(
-                Intent.ACTION_BATTERY_CHANGED);
-        batteryReceiver = new BatteryReceiver();
-        // 注册receiver
-        registerReceiver(batteryReceiver, intentFilter);
+        initView();
 
-        mainRg = findViewById(R.id.main_rg);
-        bgmIv = findViewById(R.id.mainActivity_image_bgm);
-        bgmIv.setImageResource(R.drawable.mainactivity_bgm_yes);
-        bgmIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (bgmFlag) {
-                    bgmIv.setImageResource(R.drawable.mainactivity_bgm_no);
-                    bgmServiceIntent.putExtra("action", "pause");
-                    startService(bgmServiceIntent);
-                    bgmFlag = false;
-                } else {
-                    bgmIv.setImageResource(R.drawable.mainactivity_bgm_yes);
-                    bgmServiceIntent.putExtra("action", "play");
-                    startService(bgmServiceIntent);
-                    bgmFlag = true;
-                }
-            }
-        });
+        mainSetFrag();
 
+    }
+
+    private void mainSetFrag() {
+
+        MyLogging.myLog(TAG, "mainSetFrag()");
         db = new DBDefinitionManipulation(this);
 
         //todo: 获取数据
@@ -118,10 +91,68 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         addFragmentPage();
     }
 
-    /**
-     * @des 将主页当中的碎片一起加载进入布局，有用的显示，暂时无用的隐藏
-     */
+    private void initView() {
+        MyLogging.myLog(TAG, "initView()");
+
+        mainRg = findViewById(R.id.main_rg);
+        bgmIv = findViewById(R.id.mainActivity_image_bgm);
+        bgmIv.setImageResource(R.drawable.mainactivity_bgm_yes);
+        bgmIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (bgmFlag) {
+                    bgmIv.setImageResource(R.drawable.mainactivity_bgm_no);
+                    bgmServiceIntent.putExtra("action", "pause");
+                    startService(bgmServiceIntent);
+                    bgmFlag = false;
+                } else {
+                    bgmIv.setImageResource(R.drawable.mainactivity_bgm_yes);
+                    bgmServiceIntent.putExtra("action", "play");
+                    startService(bgmServiceIntent);
+                    bgmFlag = true;
+                }
+            }
+        });
+    }
+
+    private void mainStartBroadcastReceiver() {
+        MyLogging.myLog(TAG, " mainStartBroadcastReceiver()");
+
+        // todo: 广播(显示bgm开启)
+        broadcastReceiverIntent = new Intent();
+
+        // 定义广播的事件类型
+        broadcastReceiverIntent.setAction("Broadcast_Action_BGM");
+        broadcastReceiverIntent.setComponent(new ComponentName(getPackageName(),
+                getPackageName() + "MyBroadcastReceiver"));
+        // 发送广播
+        sendBroadcast(broadcastReceiverIntent);
+        MyLogging.myLog(TAG, "广播通知BGM开启");
+
+        //todo:广播,获取当前手机电量
+        IntentFilter intentFilter = new IntentFilter(
+                Intent.ACTION_BATTERY_CHANGED);
+        batteryReceiver = new BatteryReceiver();
+        // 注册receiver
+        registerReceiver(batteryReceiver, intentFilter);
+        MyLogging.myLog("batteryReceiver", "广播显示当前手机电量");
+    }
+
+    private void mainStartService() {
+        MyLogging.myLog(TAG, "mainStartService()");
+
+        // todo:开启BGM
+        bgmServiceIntent = new Intent(this, BGMService.class);
+        bgmServiceIntent.putExtra("action", "play");
+        startService(bgmServiceIntent);
+        MyLogging.myLog(TAG, "onCreate: BGMService start " + BGMService.class);
+    }
+
+
+    //todo: 将主页当中的碎片一起加载进入布局，有用的显示，暂时无用的隐藏
     private void addFragmentPage() {
+        MyLogging.myLog(TAG, "addFragmentPage()");
+
         manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
@@ -166,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     @Override
     protected void onDestroy() {
-        Log.e(TAG, "onCreate: BGMService stop " + BGMService.class);
+        MyLogging.myLog(TAG, "onCreate: BGMService stop " + BGMService.class);
         stopService(bgmServiceIntent);
         unregisterReceiver(batteryReceiver);
         super.onDestroy();

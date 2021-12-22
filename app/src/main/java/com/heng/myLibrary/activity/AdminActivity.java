@@ -14,6 +14,7 @@ import com.heng.myLibrary.adapter.AdminFragAdapter;
 import com.heng.myLibrary.fragment.adminFrag.BookFragment;
 import com.heng.myLibrary.fragment.adminFrag.SelectFragment;
 import com.heng.myLibrary.fragment.adminFrag.UserFragment;
+import com.heng.myLibrary.util.MyLogging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.List;
  * 管理员界面
  */
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "AdminActivity";
 
     Button bookBtn, userBtn, selectBtn;
     ViewPager adminVp;
@@ -34,12 +36,16 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
+        MyLogging.myLog(TAG, "onCreate()");
+
         initView();
         initFrag();
     }
 
     //todo:初始化fragment
     private void initFrag() {
+        MyLogging.myLog(TAG, "initFrag()");
+
         adminVPList = new ArrayList<>();
 
         bookFrag = new BookFragment();
@@ -55,6 +61,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
 
     //todo:初始化UI
     private void initView() {
+        MyLogging.myLog(TAG, "initView()");
 
         bookBtn = findViewById(R.id.book_operation_btn);
         userBtn = findViewById(R.id.user_operation_btn);

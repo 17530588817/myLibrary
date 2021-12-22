@@ -19,11 +19,12 @@ import androidx.fragment.app.Fragment;
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 import com.heng.myLibrary.database.entity.User;
+import com.heng.myLibrary.util.MyLogging;
 
 /**
  * @author : HengZhang
  * @date : 2021/11/28 15:53
- *
+ * <p>
  * 管理员界面的用户操作界面
  */
 
@@ -37,6 +38,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        MyLogging.myLog(TAG, "onCreate()");
     }
 
     @Nullable
@@ -44,11 +47,15 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_2_user, container, false);
 
+        MyLogging.myLog(TAG, "onCreateView()");
+
         initView(view);
         return view;
     }
 
     private void initView(View view) {
+        MyLogging.myLog(TAG, "initView()");
+
         nameTv = view.findViewById(R.id.add_username);
         sexTv = view.findViewById(R.id.add_sex);
         accountTv = view.findViewById(R.id.add_account);
@@ -89,7 +96,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     }
 
     private boolean adminDeleteUser() {
-        if (TextUtils.isEmpty(nameTv.getText())){
+        MyLogging.myLog(TAG, "adminDeleteUser()");
+
+        if (TextUtils.isEmpty(nameTv.getText())) {
             return false;
         }
         db = new DBDefinitionManipulation(getContext());
@@ -100,6 +109,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     }
 
     private boolean adminAddUser() {
+        MyLogging.myLog(TAG, "adminAddUser()");
 
         if (TextUtils.isEmpty(nameTv.getText()) || TextUtils.isEmpty(sexTv.getText()) || TextUtils.isEmpty(accountTv.getText()) ||
                 TextUtils.isEmpty(passwordTv.getText()) || TextUtils.isEmpty(phoneTv.getText()) || TextUtils.isEmpty(emailTv.getText())) {

@@ -13,6 +13,7 @@ import com.heng.myLibrary.R;
 import com.heng.myLibrary.adapter.NewsAdapter;
 import com.heng.myLibrary.database.bean.NewsInfo;
 import com.heng.myLibrary.util.JsonParse;
+import com.heng.myLibrary.util.MyLogging;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.image.SmartImageView;
@@ -23,31 +24,34 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 public class NewsActivity extends AppCompatActivity {
+    private static final String TAG = "NewsActivity";
+
     private LinearLayout loading;
     private ListView lvNews;
     private List<NewsInfo> newsInfos;
-    private TextView tv_title;
-    private TextView tv_description;
-    private TextView tv_type;
-    private NewsInfo newsInfo;
-    private SmartImageView siv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+
+        MyLogging.myLog(TAG, "onCreate()");
+
         initView();
         fillData();
     }
 
     //初始化控件
     private void initView() {
+        MyLogging.myLog(TAG, "initView()");
+
         loading = (LinearLayout) findViewById(R.id.loading);
         lvNews = (ListView) findViewById(R.id.lv_news);
     }
 
     //使用AsyncHttpClient访问网络
     private void fillData() {
+        MyLogging.myLog(TAG, "fillData()");
 
         //创建AsyncHttpClient实例
         AsyncHttpClient client = new AsyncHttpClient();
@@ -64,7 +68,7 @@ public class NewsActivity extends AppCompatActivity {
                     } else {
                         //更新界面
                         loading.setVisibility(View.INVISIBLE);
-                        lvNews.setAdapter(new NewsAdapter(getBaseContext(),newsInfos));
+                        lvNews.setAdapter(new NewsAdapter(getBaseContext(), newsInfos));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

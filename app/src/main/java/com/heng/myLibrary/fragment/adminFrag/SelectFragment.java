@@ -20,6 +20,7 @@ import com.heng.myLibrary.database.bean.SelectBookItem;
 import com.heng.myLibrary.database.bean.SelectUserItem;
 import com.heng.myLibrary.database.entity.Book;
 import com.heng.myLibrary.database.entity.User;
+import com.heng.myLibrary.util.MyLogging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ import java.util.List;
  */
 
 public class SelectFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = "SelectFragment";
 
     ListView listView;
     List<SelectBookItem> mBookDatas;
@@ -46,12 +48,16 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         mBookDatas = new ArrayList<>();
         mUserDatas = new ArrayList<>();
+
+        MyLogging.myLog(TAG, "onCreate()");
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_2_select, container, false);
+
+        MyLogging.myLog(TAG, "onCreateView()");
 
         initView(view);
         showUsers();
@@ -63,6 +69,8 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
+        MyLogging.myLog(TAG, "initView()");
+
         bookBtn = view.findViewById(R.id.select_book_btn);
         userBtn = view.findViewById(R.id.select_user_btn);
         listView = view.findViewById(R.id.admin_select_lv);
@@ -97,6 +105,7 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
      * 4.show
      */
     private void showBooks() {
+        MyLogging.myLog(TAG, "showBooks()");
         addBooksToList(getBookInfo());
     }
 
@@ -131,6 +140,7 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
      * 4.show
      */
     private void showUsers() {
+        MyLogging.myLog(TAG, "showUsers()");
         addUsersToList(getUsersInfo());
     }
 

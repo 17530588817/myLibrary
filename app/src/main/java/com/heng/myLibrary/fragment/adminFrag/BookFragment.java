@@ -3,6 +3,7 @@ package com.heng.myLibrary.fragment.adminFrag;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 import com.heng.myLibrary.database.entity.Book;
+import com.heng.myLibrary.util.MyLogging;
 
 /**
  * @author : HengZhang
@@ -27,6 +29,7 @@ import com.heng.myLibrary.database.entity.Book;
 
 public class BookFragment extends Fragment implements View.OnClickListener {
 
+    private static final String TAG = "BookFragment";
     EditText bookName, bookNumber, bookAuthor, bookPrice;
     Button addBookYesBtn, delBookYesBtn;
     DBDefinitionManipulation db;
@@ -34,6 +37,7 @@ public class BookFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MyLogging.myLog(TAG,"onCreate()");
     }
 
     @Nullable
@@ -41,11 +45,15 @@ public class BookFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_2_book, container, false);
 
+        MyLogging.myLog(TAG,"onCreateView()");
+
         initView(view);
         return view;
     }
 
     private void initView(View view) {
+        MyLogging.myLog(TAG,"initView()");
+
         bookName = view.findViewById(R.id.admin_bookname);
         bookNumber = view.findViewById(R.id.admin_booknumber);
         bookAuthor = view.findViewById(R.id.admin_bookauthor);
@@ -88,6 +96,7 @@ public class BookFragment extends Fragment implements View.OnClickListener {
     }
 
     private boolean adminAddBook() {
+        MyLogging.myLog(TAG,"adminAddBook()");
         if (TextUtils.isEmpty(bookName.getText()) || TextUtils.isEmpty(bookNumber.getText())
                 || TextUtils.isEmpty(bookAuthor.getText()) || TextUtils.isEmpty(bookPrice.getText())) {
             Toast.makeText(getContext(), "数据不能为空！", Toast.LENGTH_SHORT).show();
@@ -109,6 +118,7 @@ public class BookFragment extends Fragment implements View.OnClickListener {
     }
 
     private boolean adminDeleteBook() {
+        MyLogging.myLog(TAG,"adminDeleteBook()");
         if (TextUtils.isEmpty(bookName.getText())) {
             return false;
         }

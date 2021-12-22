@@ -25,6 +25,7 @@ import com.heng.myLibrary.activity.NewsActivity;
 import com.heng.myLibrary.adapter.DefaultGVAdapter;
 import com.heng.myLibrary.adapter.DefaultVPAdapter;
 import com.heng.myLibrary.database.bean.DefaultGVItem;
+import com.heng.myLibrary.util.MyLogging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,8 @@ import java.util.List;
  * default主界面
  */
 public class DefaultFragment extends Fragment implements View.OnClickListener {
+
+    private static final String TAG = "DefaultFragment";
 
     List<DefaultGVItem> mDatas;
     private DefaultGVAdapter adapter;
@@ -79,6 +82,8 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_1_default, container, false);
 
+        MyLogging.myLog(TAG, "onCreateView()");
+
         initView(view);
 
         //todo: 初始化图片
@@ -102,6 +107,8 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
      * 设置GridView的监听事件函数
      */
     private void setGVListener() {
+        MyLogging.myLog(TAG, "setGVListener()");
+
         defaultGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -123,6 +130,8 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initGV() {
+        MyLogging.myLog(TAG, "initGV()");
+
         DefaultGVItem nowInto = new DefaultGVItem("我要入馆", null, "", "");
         DefaultGVItem startRead = new DefaultGVItem("开始阅读", null, "", "");
         DefaultGVItem allBooks = new DefaultGVItem("馆藏图书", null, "", "");
@@ -153,6 +162,8 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
 
 
     private void setVPListener() {
+        MyLogging.myLog(TAG, "setVPListener()");
+
         defaultVp.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -165,6 +176,8 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initPager() {
+        MyLogging.myLog(TAG, "initPager()");
+
         ivList = new ArrayList<>();
         pointList = new ArrayList<>();
 
@@ -209,6 +222,8 @@ public class DefaultFragment extends Fragment implements View.OnClickListener {
      * @param view
      */
     private void initView(View view) {
+        MyLogging.myLog(TAG, "initView()");
+
         defaultVp = view.findViewById(R.id.default_img_vp);
         defaultGv = view.findViewById(R.id.default_gv);
         pointLayout = view.findViewById(R.id.default_point);

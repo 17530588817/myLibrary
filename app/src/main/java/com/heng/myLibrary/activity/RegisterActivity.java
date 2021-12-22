@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 import com.heng.myLibrary.database.entity.User;
+import com.heng.myLibrary.util.MyLogging;
 
 /**
  * @author : HengZhang
@@ -34,10 +35,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        MyLogging.myLog(TAG, "onCreate()");
+
         initView();
     }
 
     private void initView() {
+        MyLogging.myLog(TAG, "initView()");
+
         nameTv = findViewById(R.id.register_username);
         sexTv = findViewById(R.id.register_sex);
         accountTv = findViewById(R.id.register_account);
@@ -70,6 +75,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     // todo:验证数据的合法性
     private boolean checkRegister() {
+
+        MyLogging.myLog(TAG, "checkRegister()");
 
         if (TextUtils.isEmpty(nameTv.getText()) || TextUtils.isEmpty(sexTv.getText()) || TextUtils.isEmpty(accountTv.getText()) ||
                 TextUtils.isEmpty(passwordTv.getText()) || TextUtils.isEmpty(phoneTv.getText()) || TextUtils.isEmpty(emailTv.getText())) {

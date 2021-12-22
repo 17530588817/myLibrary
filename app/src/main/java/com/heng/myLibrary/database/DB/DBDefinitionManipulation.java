@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.heng.myLibrary.database.entity.Book;
 import com.heng.myLibrary.database.entity.User;
+import com.heng.myLibrary.util.MyLogging;
 
 /**
  * @author : HengZhang
@@ -54,6 +55,7 @@ public class DBDefinitionManipulation {
     // 构造器
     public DBDefinitionManipulation(Context _context) {
         context = _context;
+        MyLogging.myLog(TAG, "DBDefinitionManipulation init");
     }
 
     /******************************************************************************/
@@ -109,7 +111,7 @@ public class DBDefinitionManipulation {
 //        Log.e(TAG, "lendBook: code:" + cursor.getInt(cursor.getColumnIndex(USER_CODE)));
         int userCode = cursor.getInt(cursor.getColumnIndex(USER_CODE)) + 1;
         String sql = "update " + USER_TABLE + " set " + USER_CODE + " = " + userCode
-                +" where " +USER_ACCOUNT + " = " + userName;
+                + " where " + USER_ACCOUNT + " = " + userName;
         db.execSQL(sql);
 
         //--------------------------------------------------------------------------------------------
@@ -119,7 +121,7 @@ public class DBDefinitionManipulation {
         db.update(BOOK_TABLE, values, BOOK_NAME + "=?", new String[]{userBook});
 
         cursor.close();
-        Log.e(TAG, " lendBook 成功");
+
         return true;
     }
 
@@ -143,7 +145,7 @@ public class DBDefinitionManipulation {
         }
         int userCode = cursor.getInt(cursor.getColumnIndex(USER_CODE)) + 1;
         String sql = "update " + USER_TABLE + " set " + USER_CODE + " = " + userCode
-                +" where " +USER_ACCOUNT + " = " + userName;
+                + " where " + USER_ACCOUNT + " = " + userName;
         db.execSQL(sql);
 
         //正式还书
@@ -154,7 +156,6 @@ public class DBDefinitionManipulation {
         values.put(BOOK_STATUS, 0);
         db.update(BOOK_TABLE, values, BOOK_NAME + "=?", new String[]{userBook});
 
-        Log.e(TAG, "backBook: ");
         return true;
     }
 

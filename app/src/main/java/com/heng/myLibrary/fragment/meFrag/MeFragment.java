@@ -38,6 +38,7 @@ import com.heng.myLibrary.activity.NewsActivity;
 import com.heng.myLibrary.adapter.MeItemAdapter;
 import com.heng.myLibrary.database.bean.MeItemBean;
 import com.heng.myLibrary.database.entity.User;
+import com.heng.myLibrary.util.MyLogging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class MeFragment extends Fragment implements View.OnClickListener {
 
+    private static final String TAG = "MeFragment";
     CircleImageView iconIv;
     TextView nameTv, codeTv;
     User user;
@@ -61,6 +63,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        MyLogging.myLog(TAG, "onCreate()");
+
         mDatas = new ArrayList<>();
     }
 
@@ -69,6 +73,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.frag_1_me, container, false);
+
+        MyLogging.myLog(TAG, "onCreateView()");
 
         //todo: 获取数据
         Bundle bundle = getArguments();
@@ -86,6 +92,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setLvListener() {
+        MyLogging.myLog(TAG, "setLvListener()");
+
         meLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -112,6 +120,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
+        MyLogging.myLog(TAG, "initView()");
+
         iconIv = view.findViewById(R.id.meFrag_iv);
         nameTv = view.findViewById(R.id.user_name);
         codeTv = view.findViewById(R.id.user_code);
@@ -127,6 +137,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onClick(View view) {
+                MyLogging.myLog(TAG, "获取相册图片设置头像()");
+
                 //todo:动态申请权限
                 if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission
                         .WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {

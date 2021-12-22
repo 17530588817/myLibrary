@@ -56,11 +56,6 @@ public class DBTools {
         if (!checkCursor(cursor)) {
             return null;
         }
-        //  users[i].ID = cursor.getInt(0);
-        //  users[i].Name = cursor.getString(cursor.getColumnIndex(KEY_NAME));
-        //  users[i].Sex = cursor.getString(cursor.getColumnIndex(KEY_SEX));
-        //  users[i].Totalcredits = cursor.getInt(cursor.getColumnIndex(KEY_TOTALCREDITS));
-
         Book book = new Book();
         book.setBookId(cursor.getInt(0));
         book.setBookName(cursor.getString(cursor.getColumnIndex(bookName)));
@@ -93,7 +88,7 @@ public class DBTools {
     //Cursor数据转换Users
     @SuppressLint("Range")
     public User[] convertToUsers(Cursor cursor, String userName, String userAccount, String userPassword, String userPhone,
-                                 String userEmail, String userSex, String userCode, String userBook,String userLevel) {
+                                 String userEmail, String userSex, String userCode, String userBook, String userLevel) {
         int resultCounts = cursor.getCount();
         if (resultCounts == 0 || !cursor.moveToFirst()) {
             return null;
@@ -101,11 +96,6 @@ public class DBTools {
         User[] users = new User[resultCounts];
         if (cursor.moveToFirst()) {
             for (int i = 0; i < resultCounts; i++) {
-//            users[i].ID = cursor.getInt(0);
-//            users[i].Name = cursor.getString(cursor.getColumnIndex(KEY_NAME));
-//            users[i].Sex = cursor.getString(cursor.getColumnIndex(KEY_SEX));
-//            users[i].Totalcredits = cursor.getInt(cursor.getColumnIndex(KEY_TOTALCREDITS));
-
                 users[i] = new User();
                 users[i].setUserId(cursor.getInt(0));
                 users[i].setUserName(cursor.getString(cursor.getColumnIndex(userName)));
@@ -135,11 +125,6 @@ public class DBTools {
         Book[] books = new Book[resultCounts];
         if (cursor.moveToFirst()) {
             for (int i = 0; i < resultCounts; i++) {
-//            users[i].ID = cursor.getInt(0);
-//            users[i].Name = cursor.getString(cursor.getColumnIndex(KEY_NAME));
-//            users[i].Sex = cursor.getString(cursor.getColumnIndex(KEY_SEX));
-//            users[i].Totalcredits = cursor.getInt(cursor.getColumnIndex(KEY_TOTALCREDITS));
-
                 books[i] = new Book();
                 books[i].setBookId(cursor.getInt(0));
                 books[i].setBookName(cursor.getString(cursor.getColumnIndex(bookName)));

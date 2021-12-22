@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.adapter.HelperLvAdapter;
 import com.heng.myLibrary.database.bean.HelperItemBean;
+import com.heng.myLibrary.util.MyLogging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ import java.util.List;
  * 帮助界面
  */
 public class HelperActivity extends AppCompatActivity {
+    private static final String TAG = "HelperActivity";
+
     ListView helperLv;
     ImageView helperBack;
     List<HelperItemBean> mDatas;
@@ -30,6 +33,16 @@ public class HelperActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_helper);
 
+        MyLogging.myLog(TAG, "onCreate()");
+
+        initView();
+
+        showContent();
+    }
+
+    private void initView() {
+        MyLogging.myLog(TAG, "initView");
+
         helperLv = findViewById(R.id.helper_lv);
         helperBack = findViewById(R.id.helper_back);
         helperBack.setOnClickListener(new View.OnClickListener() {
@@ -38,10 +51,11 @@ public class HelperActivity extends AppCompatActivity {
                 finish();
             }
         });
-        showContent();
     }
 
     private void showContent() {
+        MyLogging.myLog(TAG, "showContent()");
+
         mDatas = new ArrayList<>();
         HelperItemBean helperItemBean1 = new HelperItemBean(1, "登陆/注册",
                 "   普通用户登陆，显示<用户名或密码错误>，说明您未注册或账号密码输入有误或权限不够。");

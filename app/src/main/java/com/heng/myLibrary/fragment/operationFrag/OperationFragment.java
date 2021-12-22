@@ -21,6 +21,7 @@ import com.heng.myLibrary.database.DB.DBDefinitionManipulation;
 import com.heng.myLibrary.database.bean.SelectBookItem;
 import com.heng.myLibrary.database.entity.Book;
 import com.heng.myLibrary.database.entity.User;
+import com.heng.myLibrary.util.MyLogging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ import java.util.List;
  * 借还界面
  */
 public class OperationFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = "OperationFragment";
 
     User user;
     TextView nameEdit, codeEdit;
@@ -50,6 +52,8 @@ public class OperationFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_1_operation, container, false);
 
+        MyLogging.myLog(TAG, "onCreateView()");
+
         //从MainActivity获取数据
         Bundle bundle1 = getArguments();
         assert bundle1 != null;
@@ -64,6 +68,8 @@ public class OperationFragment extends Fragment implements View.OnClickListener 
     }
 
     private void setVPSelectListener() {
+        MyLogging.myLog(TAG, "setVPSelectListener()");
+
         operationVp.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -73,6 +79,8 @@ public class OperationFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initView(View view) {
+        MyLogging.myLog(TAG, "initView()");
+
         lendBtn = view.findViewById(R.id.lend_frag_btn);
         backBtn = view.findViewById(R.id.back_frag_btn);
         operationVp = view.findViewById(R.id.operation_vp);
@@ -90,6 +98,8 @@ public class OperationFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initFrag() {
+        MyLogging.myLog(TAG, "initFrag()");
+
         VPList = new ArrayList<>();
 
         //添加对象
@@ -133,6 +143,8 @@ public class OperationFragment extends Fragment implements View.OnClickListener 
     }
 
     private void showBooks() {
+        MyLogging.myLog(TAG, "showBooks()");
+
         addBooksToList(getBookInfo());
     }
 

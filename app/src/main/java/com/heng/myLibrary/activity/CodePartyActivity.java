@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.heng.myLibrary.R;
 import com.heng.myLibrary.adapter.CodePartyLvAdapter;
 import com.heng.myLibrary.database.bean.CodePartyItemBean;
+import com.heng.myLibrary.util.MyLogging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 
 public class CodePartyActivity extends AppCompatActivity {
+    private static final String TAG = "CodePartyActivity";
 
     ListView codePartyLv;
     ImageView codePartyBack;
@@ -32,6 +34,16 @@ public class CodePartyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_party_activity);
 
+        MyLogging.myLog(TAG,"onCreate()");
+
+        initView();
+
+        showCodeParties();
+    }
+
+    private void initView() {
+        MyLogging.myLog(TAG,"initView()");
+
         codePartyLv = findViewById(R.id.code_party_lv);
         codePartyBack = findViewById(R.id.code_party_back);
         codePartyBack.setOnClickListener(new View.OnClickListener() {
@@ -40,10 +52,11 @@ public class CodePartyActivity extends AppCompatActivity {
                 finish();
             }
         });
-        showCodeParties();
     }
 
     private void showCodeParties() {
+        MyLogging.myLog(TAG,"showCodeParties()");
+
         mDatas = new ArrayList<>();
         CodePartyItemBean codePartyItemBean1 = new CodePartyItemBean("讲座:", "参考文献的正确引用",
                 "        图书馆（档案馆）第十五届服务月系列活动之一。学术诚信是科学精神的基底，大学生在学术生涯的开端就要爱惜自己的学术羽毛，做一个坚定的学术诚信捍卫者。本讲座从违反学术道德的案例出发，讲述学术诚信的内涵，并重点讲解如何正确标引文后参考文献。");
