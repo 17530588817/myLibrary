@@ -55,7 +55,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     User user;
     ListView meLv;
     List<MeItemBean> mDatas;
-    Button exitBtn,newsBtn;
+    Button exitBtn, newsBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,16 +89,25 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         meLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
                         // 我的积分
-                        Toast.makeText(getContext(),"当前积分：",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "当前积分：" + user.getUserCode(), Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
+                        //我的借书
+//                        Toast.makeText(getContext(), "书名：  " + user.getBookName(), Toast.LENGTH_SHORT).show();
+                        if (user.getBookName() == null) {
+                            Toast.makeText(getContext(), "您未借书", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Toast.makeText(getContext(), "书名：" + user.getBookName(), Toast.LENGTH_SHORT).show();
+                        }
                         break;
 
                 }
             }
+
         });
     }
 
@@ -227,10 +236,10 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         MeItemBean setting = new MeItemBean("设置", "", "");
 
         mDatas.add(userCode);
+        mDatas.add(bookLend);
         mDatas.add(inLibTime);
         mDatas.add(collection);
         mDatas.add(bookReview);
-        mDatas.add(bookLend);
         mDatas.add(setting);
 
         //todo:  设置适配器
@@ -258,7 +267,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             Intent intent = new Intent(getContext(), LoginActivity.class);
             startActivity(intent);
             Objects.requireNonNull(getActivity()).finish();
-        }else if(view.getId() == R.id.news){
+        } else if (view.getId() == R.id.news) {
             Intent intent = new Intent(getContext(), NewsActivity.class);
             startActivity(intent);
         }
