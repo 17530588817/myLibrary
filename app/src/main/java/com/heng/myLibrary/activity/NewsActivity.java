@@ -56,7 +56,7 @@ public class NewsActivity extends AppCompatActivity {
         //创建AsyncHttpClient实例
         AsyncHttpClient client = new AsyncHttpClient();
         //使用GET方式请求
-        client.get("http://10.200.10.10:8080/chapter12/test.json", new AsyncHttpResponseHandler() {
+        client.get("http://192.168.43.25:8080/chapter12/test.json", new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
                 //请求成功

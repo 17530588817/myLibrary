@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ib_book06"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Library">
+        android:theme="@style/Theme.Library"
+        android:requestLegacyExternalStorage="true">
         <activity
             android:name=".activity.CodePartyActivity"
             android:exported="true" />
